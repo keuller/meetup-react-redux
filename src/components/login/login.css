@@ -1,0 +1,14 @@
+.login-box {
+    background-color: #eee;
+}
+
+.login-title {
+    background-color: rgb(117, 117, 117);
+    color: #ffffff;
+}
+
+.mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
