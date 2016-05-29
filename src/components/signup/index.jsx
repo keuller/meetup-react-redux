@@ -1,10 +1,15 @@
-
+import { connect } from 'react-redux'
 import { Grid, Cell } from 'mdl/grid'
 import { LayoutSpacer } from 'mdl/layout'
 import { Card, CardTitle, CardTitleText, CardContent, CardActions } from 'mdl/card'
 import { Button, LinkButton } from 'mdl/button'
 import Input from 'mdl/input'
 import Users from 'api/users'
+import { SHOW_LOGIN } from 'store/reducers'
+
+const dispatchToProps = (dispatch) => ({
+    doCancel: () => dispatch({ type: SHOW_LOGIN })
+})
 
 const Signup = React.createClass({
     onSubmit(ev) {
@@ -16,12 +21,12 @@ const Signup = React.createClass({
         }
         Users.add(model)
         this.props.notify('Conta criada com sucesso.')
-        this.props.onCancel()
+        this.props.doCancel()
     },
     
     onCancel(ev) {
         ev.preventDefault()
-        this.props.onCancel()
+        this.props.doCancel()
     },
     
     componentDidMount() {
@@ -65,4 +70,4 @@ const Signup = React.createClass({
     }
 })
 
-export default Signup
+export default connect(null, dispatchToProps)(Signup)

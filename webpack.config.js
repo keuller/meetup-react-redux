@@ -8,7 +8,7 @@ var extractMDL = new ExtractTextPlugin('mdl.css')
 module.exports = {
     entry: {
         bundler: path.join(__dirname, 'src/index.jsx'),
-        vendor: ['react', 'react-dom', 'redux', 'react-redux', 'redux-loop']
+        vendor: ['react', 'react-dom', 'redux', 'react-redux']
     },
     
     output: {
