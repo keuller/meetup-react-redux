@@ -1,14 +1,15 @@
 var path = require('path')
   , webpack = require('webpack')
   , ExtractTextPlugin = require('extract-text-webpack-plugin')
+  , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 var extractMDL = new ExtractTextPlugin('mdl.css')
   , extractAPP = new ExtractTextPlugin('login.css')
-  
+
 module.exports = {
     entry: {
         bundler: path.join(__dirname, 'src/index.jsx'),
-        vendor: ['react', 'react-dom', 'redux', 'react-redux', 'redux-loop']
+        vendor: ['react', 'react-dom', 'redux', 'react-redux']
     },
     
     output: {
@@ -55,6 +56,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
         }),
+        new BrowserSyncPlugin({
+            host: 'localhost',
+            port: 3000,
+            server: { baseDir: [__dirname] }
+        }, { reload: true }),
         new webpack.NoErrorsPlugin()
     ]
 }
