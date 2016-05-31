@@ -4,7 +4,7 @@ import { AppBar, AppTitle, LayoutSpacer } from 'mdl/layout'
 import { Navigation, NavigationItem } from 'mdl/layout/navigation'
 import { LinkButton } from 'mdl/button'
 import Badge from 'mdl/badge'
-import Icon from 'mdl/icon'
+import Icon  from 'mdl/icon'
 import { DO_LOGOUT } from 'store/reducers'
 
 const stateToProps = (state) => ({

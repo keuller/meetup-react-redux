@@ -1,5 +1,4 @@
 import { PropTypes } from 'react'
-import { connect } from 'react-redux'
 import { Layout, Content } from 'mdl/layout'
 import { Grid, Cell } from 'mdl/grid'
 import Snackbar from 'mdl/snackbar'
@@ -9,18 +8,18 @@ import Login  from 'components/login'
 import Signup from 'components/signup'
 import Dashboard from 'components/dashboard'
 
-const stateToProps = (state) => ({
-    currentView: state.view
-})
-
 const App = React.createClass({
+    
+    getInitialState() {
+        return { currentView: 'login' }
+    },
     
     doLogout() {
         this.context.store.dispatch({ type: DO_LOGOUT })
     },
     
     renderView() {
-        switch(this.props.currentView) {
+        switch(this.state.currentView) {
             case 'signup':
                 return (<Signup notify={this.notification} />)
             case 'dashboard':
@@ -32,6 +31,17 @@ const App = React.createClass({
     
     notification(message) {
         this.refs.notification.show(message)
+    },
+    
+    componentDidMount() {
+        let { store } = this.context
+        this.unsubscribe = store.subscribe(() => {
+            this.setState({ currentView: store.getState().view })
+        })
+    },
+    
+    componentWillUnmount() {
+        this.unsubscribe()
     },
     
     render() {
@@ -62,4 +72,4 @@ App.contextTypes = {
     store: PropTypes.object 
 }
 
-export default connect(stateToProps)(App)
+export default App

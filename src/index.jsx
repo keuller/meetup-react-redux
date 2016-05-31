@@ -5,7 +5,6 @@ import { Provider } from 'react-redux'
 import Application from 'containers/application'
 
 document.addEventListener('DOMContentLoaded', (ev) => {
-    console.log(appStore.getState())
     render(
         <Provider store={appStore}>
             <Application />
