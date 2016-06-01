@@ -8,8 +8,8 @@ var extractMDL = new ExtractTextPlugin('mdl.css')
 
 module.exports = {
     entry: {
-        bundler: path.join(__dirname, 'src/index.jsx'),
-        vendor: ['react', 'react-dom', 'redux', 'react-redux']
+        bundler: path.join(__dirname, 'src/index.js'),
+        vendor: ['vue', 'redux']
     },
     
     output: {
@@ -18,7 +18,7 @@ module.exports = {
     },
     
     resolve: {
-        extensions: ['', '.js', '.jsx'],
+        extensions: ['', '.js', '.vue'],
         modulesDirectories: ['src', 'node_modules']
     },
     
@@ -29,12 +29,13 @@ module.exports = {
     module: {
         loaders: [
             { 
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 loader: 'babel-loader',
+                exclude: /node_modules/
+            }, {
+                test: /\.vue$/,
+                loaders: ['vue-loader'],
                 exclude: /node_modules/,
-                query: {
-                    presets: ['es2015', 'react']
-                }
             }, {
                 test: /\.css/,
                 loader: extractAPP.extract(['css']),
@@ -51,7 +52,7 @@ module.exports = {
         extractMDL,
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.ProvidePlugin({
-            'React': 'react'
+            'Vue': 'vue'
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
