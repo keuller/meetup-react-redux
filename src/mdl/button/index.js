@@ -16,9 +16,10 @@ function buttonClasses(props) {
 }
 
 const Button = Vue.extend({
-    template: '<button type="button" v-on:click.prevent="clickHandler" class={{this.getClasses()}}><slot></slot></button>',
+    template: '<button type={{this.getType()}} v-on:click="clickHandler" class={{this.getClasses()}}><slot></slot></button>',
     
     props: {
+        'type': { type: String },
         'event': { type: String },
         'flat': { type: Boolean },
         'fab' : { type: Boolean },
@@ -31,6 +32,10 @@ const Button = Vue.extend({
     },
     
     methods: {
+        getType() {
+            return (this.type) ? this.type : 'button'
+        },
+        
         getClasses() {
             return buttonClasses(this)
         },

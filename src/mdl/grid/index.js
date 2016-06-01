@@ -1,7 +1,2 @@
-import Grid from 'mdl/grid/grid'
-import Cell from 'mdl/grid/cell'
-
-export default {
-    grid: Grid,
-    cell: Cell
-}
+import 'mdl/grid/grid.js'
+import 'mdl/grid/cell'

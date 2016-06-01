@@ -42,7 +42,6 @@
 </template>
 
 <script>
-    import Grid from 'mdl/grid'
     import Layout from 'mdl/layout'
     import 'components/login/login.css'
     import store  from 'store'
@@ -69,8 +68,6 @@
         },
         
         components: {
-            grid: Grid.grid,
-            cell: Grid.cell,
             spacer: Layout.spacer
         }
     }

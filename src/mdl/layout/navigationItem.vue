@@ -1,12 +1,15 @@
 <template>
-    <a class='mdl-navigation__link' v-on:click='clickHandler'><slot></slot></a>
+    <a class='mdl-navigation__link' v-on:click.prevent='clickHandler'><slot></slot></a>
 </template>
 
 <script>
-    export default { 
+    export default {
+        props: {
+            event: { type: String }
+        },
         methods: {
             clickHandler() {
-                console.log('Link clicked!')
+                if (this.event) this.$dispatch(this.event)
             }
         }
     }
