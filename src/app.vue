@@ -11,23 +11,30 @@
             <grid>
                 <cell size='4'>&nbsp;</cell>
                 <cell size='4'>
-                    <login></login>
+                    <login v-if='view == "login"'></login>
+                    <signup v-if='view == "signup"'></signup>
                 </cell>
                 <cell size='4'>&nbsp;</cell>
             </grid>
-            
         </content>
     </layout>
 </template>
 
 <script>
     import Layout from 'mdl/layout'
-    import Grid from 'mdl/grid'
+    import Grid   from 'mdl/grid'
     import Header from 'components/header/header'
-    import Login from 'components/login/login'
+    import Login  from 'components/login/login'
     import Signup from 'components/signup/signup'
+    import store  from 'store'
     
     export default {
+        data() {
+            return {
+                view: this.$select('view') // store.getState().view (React mode)
+            }
+        },
+        
         components: {
             layout: Layout.layout,
             appHeader: Header,

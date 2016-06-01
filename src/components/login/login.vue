@@ -35,11 +35,13 @@
     import Grid from 'mdl/grid'
     import Layout from 'mdl/layout'
     import 'components/login/login.css'
+    import { showSignup } from 'store/reducers'
+    import store  from 'store'
     
     export default {
         events: {
             onSignup() {
-                console.log('-> singup')
+                store.dispatch(showSignup())
             },
             
             onAuthenticate() {

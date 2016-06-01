@@ -34,6 +34,10 @@ const Input = Vue.extend({
             return this.$el.children[0].value
         },
         
+        focus() {
+            this.$el.children[0].focus()
+        },
+        
         checkDirty() {
             let input = this.$el.children[0]
             if (input.value && input.value.length > 0) {
@@ -54,7 +58,6 @@ const Input = Vue.extend({
         },
         
         focusHandler() {
-            //this.$el.children[0].focus()
             this.$el.classList.add('is-focused')
         },
         

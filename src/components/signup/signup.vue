@@ -45,11 +45,17 @@
     import Grid from 'mdl/grid'
     import Layout from 'mdl/layout'
     import 'components/login/login.css'
+    import store  from 'store'
+    import { showLogin, ADD_USER } from 'store/reducers'
     
     export default {
+        ready() {
+            this.$refs.nome.focus()
+        },
+        
         events: {
             onCancel() {
-                console.log('-> cancel')
+                store.dispatch(showLogin())
             },
             
             onConfirm() {
@@ -58,7 +64,7 @@
                     email: this.$refs.email.value(),
                     senha: this.$refs.senha.value()
                 }
-                console.log('-> confirm', model)
+                store.dispatch({ type: ADD_USER, payload: model })
             }
         },
         
