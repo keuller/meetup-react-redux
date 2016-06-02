@@ -1,8 +1,9 @@
 
-const Badge = (props) => {
-    return (
-        <div className='material-icons mdl-badge mdl-badge--overlap' data-badge={props.value}>{props.children}</div>
-    )
-}
+const Badge = Vue.extend({
+    template: '<div class="material-icons mdl-badge mdl-badge--overlap" data-badge={{value}}><slot></slot></div>',
+    props: {
+        value: { type: String }
+    }
+})
 
-export default Badge
+Vue.component('badge', Badge)

@@ -42,8 +42,6 @@
 </template>
 
 <script>
-    import Layout from 'mdl/layout'
-    import 'components/login/login.css'
     import store  from 'store'
     import { showLogin, ADD_USER } from 'store/reducers'
     
@@ -65,10 +63,6 @@
                 }
                 store.dispatch({ type: ADD_USER, payload: model })
             }
-        },
-        
-        components: {
-            spacer: Layout.spacer
         }
     }
 </script>

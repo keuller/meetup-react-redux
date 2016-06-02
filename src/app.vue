@@ -23,7 +23,6 @@
 </template>
 
 <script>
-    import Layout from 'mdl/layout'
     import Header from 'components/header'
     import Login  from 'components/login'
     import Signup from 'components/signup'
@@ -44,9 +43,7 @@
         },
         
         components: {
-            layout: Layout.layout,
             appHeader: Header,
-            content: Layout.content,
             login: Login,
             signup: Signup,
             dashboard: Dashboard

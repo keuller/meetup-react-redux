@@ -32,7 +32,6 @@
 </template>
 
 <script>
-    import Layout from 'mdl/layout'
     import 'components/login/login.css'
     import { showSignup, DO_LOGIN } from 'store/reducers'
     import store  from 'store'
@@ -65,10 +64,6 @@
                     this.$dispatch(this.event, 'Dados invalidos, tente novamente!')
                 }                
             }
-        },
-        
-        components: {
-            spacer: Layout.spacer
-        }
+        }        
     }
 </script>

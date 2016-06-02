@@ -63,5 +63,10 @@ module.exports = {
             server: { baseDir: [__dirname] }
         }, { reload: true }),
         new webpack.NoErrorsPlugin()
-    ]
+    ],
+    
+    babel: {
+        presets: ['es2015'],
+        plugins: ['transform-runtime']
+    }
 }
