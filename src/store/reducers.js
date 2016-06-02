@@ -10,19 +10,19 @@ export const showLogin = () => ({ type: SHOW_LOGIN })
 export const showSignup = () => ({ type: SHOW_SIGNUP })
 
 // reducers functions
-export const view = (state, action) => {
+export const view = (state = 'login', action) => {
     switch(action.type) {
         case SHOW_SIGNUP:
             return 'signup'
         case DO_LOGIN:
             return 'dashboard'
         default:
-            return SHOW_LOGIN
+            return state
     }
 }
 
 export const isLogged = (state, action) => {
     if (action.type === DO_LOGIN)
         return true
-    return false
+    return state
 }
