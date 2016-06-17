@@ -1,3 +1,5 @@
+import { action } from 'mobx'
+import { observer } from 'mobx-react'
 import { Grid, Cell } from 'mdl/grid'
 import { LayoutSpacer } from 'mdl/layout'
 import { Card, CardTitle, CardTitleText, CardContent, CardActions } from 'mdl/card'
@@ -5,6 +7,7 @@ import { Button, LinkButton } from 'mdl/button'
 import Input from 'mdl/input'
 import 'components/login/login.css'
 import Users from 'api/users'
+import { changeView, login } from 'state'
 
 const Login = React.createClass({
     
@@ -18,15 +21,14 @@ const Login = React.createClass({
         if (usuario) {
             this.props.notify(`Ola ${usuario.nome}, seja bem vindo!`)
             console.log('usuario', usuario)
-            this.props.onLogin()
+            login()
         } else {
             this.props.notify('Dados invalidos, tente novamente!')
         }
     },
     
     onSignup(ev) {
-        ev.preventDefault()
-        this.props.onSignup()
+        changeView('signup')
     },
     
     render() {
@@ -59,4 +61,4 @@ const Login = React.createClass({
     }
 })
 
-export default Login
+export default observer(Login)

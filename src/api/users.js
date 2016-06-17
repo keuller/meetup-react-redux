@@ -1,6 +1,6 @@
 
 /*
- * collection de usuarios (simula API externa)
+ * colecao de usuarios (simula API externa)
  */
 function Users() {
     this.data = [{ id: 987, nome: 'Abdoral Gusmao', email:'abdoral@gmail.com', senha: '123'}]
@@ -8,7 +8,7 @@ function Users() {
 
 Users.prototype = {
     add(model) {
-        model.id = Math.round((Math.random() + 1) * 7)
+        model.id = Math.round((Math.random(5) + 1) * 7)
         this.data.push(model)
         console.log('User added: ', this.data)
     },

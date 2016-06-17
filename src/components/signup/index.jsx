@@ -1,10 +1,11 @@
-
+import { observer } from 'mobx-react'
 import { Grid, Cell } from 'mdl/grid'
 import { LayoutSpacer } from 'mdl/layout'
 import { Card, CardTitle, CardTitleText, CardContent, CardActions } from 'mdl/card'
 import { Button, LinkButton } from 'mdl/button'
 import Input from 'mdl/input'
 import Users from 'api/users'
+import { changeView } from 'state'
 
 const Signup = React.createClass({
     onSubmit(ev) {
@@ -16,12 +17,12 @@ const Signup = React.createClass({
         }
         Users.add(model)
         this.props.notify('Conta criada com sucesso.')
-        this.props.onCancel()
+        this.onCancel(ev)
     },
     
     onCancel(ev) {
         ev.preventDefault()
-        this.props.onCancel()
+        changeView('login')
     },
     
     componentDidMount() {
@@ -65,4 +66,4 @@ const Signup = React.createClass({
     }
 })
 
-export default Signup
+export default observer(Signup)

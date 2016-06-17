@@ -9,7 +9,7 @@ var extractMDL = new ExtractTextPlugin('mdl.css')
 module.exports = {
     entry: {
         bundler: path.join(__dirname, 'src/index.jsx'),
-        vendor: ['react', 'react-dom', 'redux', 'react-redux']
+        vendor: ['react', 'react-dom', 'mobx']
     },
     
     output: {
@@ -33,7 +33,8 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 query: {
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react'],
+                    plugins: ['transform-decorators']
                 }
             }, {
                 test: /\.css/,

@@ -1,14 +1,16 @@
 import 'components/header/header.css'
+import { observer } from 'mobx-react'
 import { AppBar, AppTitle, LayoutSpacer } from 'mdl/layout'
 import { Navigation, NavigationItem } from 'mdl/layout/navigation'
 import { LinkButton } from 'mdl/button'
 import Badge from 'mdl/badge'
 import Icon from 'mdl/icon'
+import AppState, { logout } from 'state'
 
 const Header = React.createClass({
     onLogout(ev) {
         ev.preventDefault()
-        this.props.doLogout()
+        logout()
     },
     
     getNavigation() {
@@ -25,12 +27,12 @@ const Header = React.createClass({
     render() {
         return (
             <AppBar>
-                <AppTitle value='Meetup React/Redux' />
+                <AppTitle value='Meetup React/Mobx' />
                 <LayoutSpacer />
-                {this.props.logged ? this.getNavigation() : null}
+                {AppState.logged ? this.getNavigation() : null}
             </AppBar>
         )
     }
 })
 
-export default Header
+export default observer(Header)

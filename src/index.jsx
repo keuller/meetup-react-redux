@@ -1,39 +1,31 @@
 import { render } from 'react-dom'
+import { useStrict } from 'mobx'
+import { observer } from 'mobx-react'
 import mdl from 'mdl/mdl.scss'
 import { Layout, Content } from 'mdl/layout'
 import { Grid, Cell } from 'mdl/grid'
 import Snackbar from 'mdl/snackbar'
+import AppState from 'state'
 
 import Header from 'components/header'
 import Login  from 'components/login'
 import Signup from 'components/signup'
 import Dashboard from 'components/dashboard'
 
-const App = React.createClass({
-    resetView() {
-        return { view: <Login onSignup={this.showSignup} onLogin={this.showDash} notify={this.notification} />, isLogged: false }
-    },
-    
-    getInitialState() {
-        return this.resetView()
-    },
-    
-    showLogin() {
-        this.setState(this.resetView())
+useStrict(true)
+
+const App = observer(React.createClass({
+    renderView() {
+        switch (AppState.currentView) {
+            case 'signup': 
+                return <Signup notify={this.notification} />
+            case 'dashboard': 
+                return <Dashboard/>
+            default: 
+                return <Login notify={this.notification} />
+        }
     },
 
-    showSignup() {
-        this.setState({ view: <Signup onCancel={this.showLogin} notify={this.notification} /> })
-    },
-    
-    showDash() {
-        this.setState({ view: <Dashboard/>, isLogged: true })
-    },
-    
-    doLogout() {
-        this.setState(this.resetView())
-    },
-    
     notification(message) {
         this.refs.notification.show(message)
     },
@@ -41,7 +33,7 @@ const App = React.createClass({
     render() {
         return (
             <Layout fixed={true}>
-                <Header logged={this.state.isLogged} doLogout={this.doLogout} />
+                <Header />
                 <Content>
                     <Grid>
                         <Cell size='12'>
@@ -51,7 +43,7 @@ const App = React.createClass({
                     <Grid>
                         <Cell size='4'>&nbsp;</Cell>
                         <Cell size='4'>
-                            {this.state.view}
+                            {this.renderView()}
                         </Cell>
                         <Cell size='4'>&nbsp;</Cell>
                     </Grid>
@@ -60,7 +52,7 @@ const App = React.createClass({
             </Layout>
         )
     }
-})
+}))
 
 document.addEventListener('DOMContentLoaded', (ev) => {
     render(<App />, document.getElementById('app'))
