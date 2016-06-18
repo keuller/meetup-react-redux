@@ -21,7 +21,7 @@ export const view = (state = 'login', action) => {
     }
 }
 
-export const isLogged = (state, action) => {
+export const isLogged = (state = false, action) => {
     if (action.type === DO_LOGIN)
         return true
     return state
